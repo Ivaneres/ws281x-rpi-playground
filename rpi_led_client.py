@@ -33,6 +33,7 @@ SPOTIFY_CHECK_RATE = 3
 
 p = pyaudio.PyAudio()
 
+print("====================== AUDIO DEVICES ======================")
 for i in range(p.get_device_count()):
     dev = p.get_device_info_by_index(i)
     print((i,dev['name'],dev['maxInputChannels']))
@@ -125,9 +126,7 @@ if SPOTIFY_ENABLED:
         os.environ.get("SPOTIFY_CLIENT_SECRET"),
         os.environ.get("SPOTIPY_REDIRECT_URI")
     ))
-    print("Thread about to start")
     t.start()
-    print("Thread started")
 
 def encode_tuple(tup):
     return "|".join(map(str, tup)).encode()
