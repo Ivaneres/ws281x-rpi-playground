@@ -21,10 +21,13 @@ LED_CHANNEL = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
 strip.begin()
 
-PATTERN_STEP = 10
+PATTERN_STEP = 40
 PATTERN_COLORS = ((255, 0, 0), (0, 255, 0))
 
+print("Booting...")
+
 def switch_on():
+    print("Switching on!")
     color_counter = 0
     for i in range(LED_COUNT):
         if (i % PATTERN_STEP) == 0:
@@ -32,8 +35,10 @@ def switch_on():
         if color_counter >= len(PATTERN_COLORS):
             color_counter = 0
         strip.setPixelColor(i, Color(*PATTERN_COLORS[color_counter]))
+    strip.show()
 
 def switch_off():
+    print("Switching off.")
     for i in range(LED_COUNT):
         strip.setPixelColor(i, Color(0, 0, 0))
         
@@ -42,3 +47,6 @@ if datetime.now().time() > datetime.datetime(1970, 1, 1, 16, 30).time():
 
 schedule.every().day.at("16:30").do(switch_on)
 schedule.every().day.at("00:00").do(switch_off)
+while True:
+    schedule.run_pending()
+    time.sleep(1)
