@@ -23,23 +23,20 @@ strip.begin()
 
 PATTERN_STEP = 40
 PATTERN_COLORS = ((255, 0, 0), (0, 255, 0))
-ANIMATION_SECS = 3
 
 print("Booting...")
 
 def switch_on():
     print("Switching on!")
     color_counter = 0
-    for t in range(ANIMATION_SECS * 10):
-        for i in range(LED_COUNT):
-            if (i % PATTERN_STEP) == 0:
-                color_counter += 1
-            if color_counter >= len(PATTERN_COLORS):
-                color_counter = 0
-            color = PATTERN_COLORS[color_counter] * (t / 10)
-            strip.setPixelColor(i, Color(*color))
-        strip.show()
-        time.sleep(0.1)
+    for i in range(LED_COUNT):
+        if (i % PATTERN_STEP) == 0:
+            color_counter += 1
+        if color_counter >= len(PATTERN_COLORS):
+            color_counter = 0
+        color = PATTERN_COLORS[color_counter] * (t / 10)
+        strip.setPixelColor(i, Color(*color))
+    strip.show()
 
 def switch_off():
     print("Switching off.")
