@@ -45,12 +45,9 @@ def switch_off():
     print("Switching off.")
     for i in range(LED_COUNT):
         strip.setPixelColor(i, Color(0, 0, 0))
-    strip.show()
         
 if datetime.now().time() > datetime(1970, 1, 1, 16, 30).time():
     switch_on()
-else:
-    switch_off()
 
 schedule.every().day.at("16:30").do(switch_on)
 schedule.every().day.at("00:00").do(switch_off)
