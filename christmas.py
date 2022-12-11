@@ -45,6 +45,7 @@ def switch_off():
     print("Switching off.")
     for i in range(LED_COUNT):
         strip.setPixelColor(i, Color(0, 0, 0))
+    strip.show()
         
 if datetime.now().time() > datetime.datetime(1970, 1, 1, 16, 30).time():
     switch_on()
