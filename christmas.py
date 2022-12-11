@@ -44,7 +44,7 @@ def switch_off():
         strip.setPixelColor(i, Color(0, 0, 0))
     strip.show()
         
-if datetime.now().time() > datetime.datetime(1970, 1, 1, 16, 30).time():
+if datetime.now().time() > datetime(1970, 1, 1, 16, 30).time():
     switch_on()
 
 schedule.every().day.at("16:30").do(switch_on)
