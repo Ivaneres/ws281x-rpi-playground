@@ -34,7 +34,7 @@ def switch_on():
             color_counter += 1
         if color_counter >= len(PATTERN_COLORS):
             color_counter = 0
-        color = PATTERN_COLORS[color_counter] * (t / 10)
+        color = PATTERN_COLORS[color_counter]
         strip.setPixelColor(i, Color(*color))
     strip.show()
 
